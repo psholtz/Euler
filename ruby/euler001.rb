@@ -16,8 +16,8 @@ def euler001(n)
   a.inject{|sum,x| sum + x}
 end
 
-euler(10)
+euler001(10)
 # ==> 23
 
-euler(1000)
+euler001(1000)
 # ==> 233,168
