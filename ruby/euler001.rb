@@ -15,3 +15,9 @@ def euler001(n)
   a = (1..(n-1)).map { |x| (x % 3 == 0) || (x % 5 == 0) ? x : nil }.compact
   a.inject{|sum,x| sum + x}
 end
+
+euler(10)
+# ==> 23
+
+euler(1000)
+# ==> 233,168
