@@ -1,9 +1,13 @@
 ;;
 ;; Problem 3
 ;;
+;; The prime factors of 13195 are 5, 7, 13 and 29.
+;;
+;; What is the largest prime factor of the number 600851475143?
+;;
 
 ;; 
-;; Define a fast procedure for calculating exponents:
+;; Define a fast procedure for calculating base raised to exponent, mod m:
 ;;
 (defn square [n] (* n n))
 
@@ -75,7 +79,8 @@
 (defn is-factor? [n] (= (rem x n) 0))
 
 ;;
-;; Generate a list of the prime factors of target;
+;; Generate a list of the prime factors of target:
+;;
 (def w (filter is-factor? q))
 
 ;;
