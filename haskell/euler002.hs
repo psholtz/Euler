@@ -15,8 +15,8 @@
 fib n = fibiter 1 0 0 1 n
 
 fibiter a b p q count | count == 0 = b
-                     | even count = fibiter a b (p*p + q*q) (2*p*q + q*q) (count `div` 2)
-                     | otherwise = fibiter (b*q + a*q + a*p) (b*p + a*q) p q (count - 1)
+                      | even count = fibiter a b (p*p + q*q) (2*p*q + q*q) (count `div` 2)
+                      | otherwise = fibiter (b*q + a*q + a*p) (b*p + a*q) p q (count - 1)
 
 -- Playing around, we see that "fib 33"	is the largest member of the Fibonacci
 -- sequence which is still smaller than	4,000,000. We thus have:
