@@ -7,15 +7,25 @@
 -- By considering the terms in the Fibonacci sequence whose values do not exceed four
 -- million, find the sum of the even-valued terms.
 --
---
--- THIS CODE IS A WORK IN PROGRESS --
---
--- Define the Fibonacci sequence:
 
-fib 0 = 0; fib 1 = 1; fib n = fib(n-1) + fib(n-2)
+-- Define a "fast" Fibonacci calculator
 
--- Use filer, map and list comprehensions to generate the sequence we want:
+fib n = fibiter 1 0 0 1 n
 
-euler002 = sum ( filter even (map fib [ x | x <- [1..100], (fib x) < 4000000 ] ) )
+fibiter a b p q count | count == 0 = b
+                     | even count = fibiter a b (p*p + q*q) (2*p*q + q*q) (count `div` 2)
+                     | otherwise = fibiter (b*q + a*q + a*p) (b*p + a*q) p q (count - 1)
 
--- 4613732
+-- Playing around, we see that "fib 33"	is the largest member of the Fibonacci
+-- sequence which is still smaller than	4,000,000. We thus have:
+
+sum (filter even (map fib [ x | x <- [1..33]] ) )
+
+-- 4,613,732
+
+-- If we didn't	know that 33 was the limit point, we could use a set comprehension as before:
+
+sum (filter even (map fib [ x |	 x <- [1..100], fib x < 4000000] ) )
+
+-- 4,613,732
+
