@@ -28,4 +28,3 @@ sum (filter even (map fib [ x | x <- [1..33]] ) )
 sum (filter even (map fib [ x |	 x <- [1..100], fib x < 4000000] ) )
 
 -- 4,613,732
-
