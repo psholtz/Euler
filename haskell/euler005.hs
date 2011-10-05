@@ -46,6 +46,8 @@ findDivisorsInRange low high = (\n -> foldr(&&) True (map (isDivisibleByK n)[low
 --
 -- There is a better way.
 --
+
+--
 -- Suppose we want to determine the smallest number which is a multiple of all the numbers from 1 to n.
 -- A better way to do this is to generate a bag of all the prime factors of all the numbers less than n, 
 -- and then simply reduce the bag under multiplication.
