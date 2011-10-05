@@ -9,6 +9,10 @@
 --
 
 --
+-- Answer: 232,792,560
+--
+
+--
 -- A completely "brute-force" way to force your way to solution would be something like the following:
 --
 -- (1) Develop a procedure that checks to see if n is divisible by k
@@ -21,9 +25,11 @@
 -- We'll implement this solution, and then we'll demonstrate a much quicker way to arrive at the same answer.
 --
 
+isDivisibleByK :: Integral a => a -> a -> Bool
 isDivisibleByK n = (\k -> n `mod` k == 0)
 
-findDivisorsInRange low high = (\n -> foldr(&&) True (map (isDivisibleByK n)[low..high]))
+findDivisorsInRange :: Integral a => a -> a -> a-> Bool
+findDivisorsInRange low high = (\n -> foldr(&&) True (map (isDivisibleByK n) [low..high]))
 
 --
 -- To use these procedures to find the numbers, between 1 and 10,000, that meet our criteria, we would write:
@@ -53,6 +59,33 @@ findDivisorsInRange low high = (\n -> foldr(&&) True (map (isDivisibleByK n)[low
 -- and then simply reduce the bag under multiplication.
 --
 -- Because we are counting primes only up to 20 (or some other small n), which don't need an especially
--- fast or fancy algorithm to determine whether an integer is prime. 
+-- fast or fancy algorithm to determine whether an integer is prime:
+--
+
+isPrime :: Integral a => a -> Bool
+isPrime n = (smallestDivisor n) == n
+
+smallestDivisor :: Integral a => a -> a
+smallestDivisor n = findDivisor n 2
+
+square :: Num a => a -> a
+square n = n * n 
+
+findDivisor :: Integral a => a -> a-> a
+findDivisor n test | (square test) > n = n
+                   | (isDivisibleByK n) test = test
+   		   | otherwise = findDivisor n (test+1)
+
+--
+-- Now let's generate a lambda procedure that gives us all the primes less than a certain number n:
+--
+primes :: Integral a => Int -> [a]
+primes n = filter isPrime ( take (n-1) [2..] )
+
+--
+-- Finally let's define the procedure we are looking for: return the smallest number which 
+-- is a multiple of all numbers up to and including n.
+--
+multiples n = 1
 
 -- [WORKING]
