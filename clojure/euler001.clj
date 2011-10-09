@@ -19,3 +19,29 @@
 ;;
 (euler001 1000)
 ;; ==> 233168
+
+;;
+;; A more "functional" way to get the same answer might have been something like the following.
+;;
+;; First define a stream of integers that we can cull from:
+;;
+(def nums (iterate inc 1))
+
+;;
+;; Define a "filter" procedure to test whether we can to keep the particular number:
+;;
+(def divisible? [x] (or (= (rem x 3) 0) (= (rem x 5) 0)))
+
+;;
+;; Filter and reduce the number stream up to the point we are looking for:
+;;
+(defn euler001b [n]
+  (reduce + 0 (filter divisible? (take (- n 1) nums))))
+
+;;
+;; Run the tests:
+;;
+(euler001b 10)
+;; ==> 23
+(euler001b 1000)
+;; ==> 233168
