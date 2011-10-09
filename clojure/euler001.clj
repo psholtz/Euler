@@ -23,7 +23,6 @@
 ;; ================== 
 ;; ALTERNATE SOLUTION
 ;; ================== 
-
 ;;
 ;; A more "functional" way to get the same answer might have been something like the following.
 ;;
